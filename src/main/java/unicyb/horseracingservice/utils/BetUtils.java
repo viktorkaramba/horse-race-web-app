@@ -1,6 +1,7 @@
 package unicyb.horseracingservice.utils;
 
 import unicyb.horseracingservice.entity.Bet;
+import unicyb.horseracingservice.entity.WinBet;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -10,9 +11,9 @@ import java.util.Map;
 public class BetUtils {
 
     public static List<Bet> generateBets(){
-        final Bet bet1 = new Bet(1, "Petro", 5);
-        final Bet bet2 = new Bet(2, "Ivan", 15);
-        final Bet bet3 = new Bet(3, "Vasiliy", 2);
+        final Bet bet1 = new WinBet(1);
+        final Bet bet2 = new WinBet(2);
+        final Bet bet3 = new WinBet(3);
 
         List<Bet> bets = new ArrayList<>();
         bets.add(bet1);

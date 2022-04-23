@@ -5,15 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id", "place", "date", "prize"})
-public class Race {
+@JsonPropertyOrder({"id", "idHorse", "idRace"})
+public class Member {
     private int id;
-    private String place;
-    private Timestamp date;
-    private float prize;
+    private int idHorse;
+    private int idRace;
 }

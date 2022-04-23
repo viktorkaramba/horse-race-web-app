@@ -4,15 +4,17 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
-
-  <servlet-mapping>
-    <servlet-name>GetStartedPageServlet</servlet-name>
-    <url-pattern>/betmanager</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>GetStartedPageServlet</servlet-name>
-    <servlet-class>unicyb.horseracingservice.servlets.GetStartedPageServlet</servlet-class>
-  </servlet>
+  <welcome-file-list>
+    <welcome-file>races.htm</welcome-file>
+  </welcome-file-list>
+  <!--  <servlet-mapping>-->
+<!--    <servlet-name>GetRaceServlet</servlet-name>-->
+<!--    <url-pattern>/races</url-pattern>-->
+<!--  </servlet-mapping>-->
+<!--  <servlet>-->
+<!--    <servlet-name>GetRaceServlet</servlet-name>-->
+<!--    <servlet-class>unicyb.horseracingservice.servlets.GetRaceServlet</servlet-class>-->
+<!--  </servlet>-->
   <servlet-mapping>
     <servlet-name>PlaceBetServlet</servlet-name>
     <url-pattern>/place_bet</url-pattern>

@@ -8,9 +8,9 @@ public class DatabaseConnection {
     public static Connection initializeDatabase()
         throws SQLException, ClassNotFoundException
     {
-        String dbDriver = "com.mysql.jdbc.Driver";
+        String dbDriver = "com.mysql.cj.jdbc.Driver";
         String dbURL = "jdbc:mysql:// localhost:3306/";
-        String dbName = "STORAGE";
+        String dbName = "HORSERACES";
         String dbUsername = "root";
         String dbPassword = "0961533469Vi";
         Class.forName(dbDriver);
