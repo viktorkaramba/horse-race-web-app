@@ -10,9 +10,10 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id", "place", "date", "prize"})
+@JsonPropertyOrder({"id", "name", "place", "date", "prize"})
 public class Race {
     private int id;
+    private String name;
     private String place;
     private Timestamp date;
     private float prize;

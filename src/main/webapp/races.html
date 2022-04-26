@@ -34,6 +34,7 @@ app.controller("races", function($scope, $http){
         </tr>
         <tr ng-repeat="race in raceVector">
             <td>{{race.id}}</td>
+            <td>{{race.name}}</td>
             <td>{{race.place}}</td>
             <td><span>{{race.date | date:"dd.MM.yyyy HH:mm:ss"}}</span></td>
             <td>{{race.prize}}</td>

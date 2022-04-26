@@ -1,0 +1,97 @@
+package unicyb.horseracingservice.database.dao;
+
+import unicyb.horseracingservice.database.DatabaseConnection;
+import unicyb.horseracingservice.database.SQLQuery;
+import unicyb.horseracingservice.entity.Horse;
+
+import java.sql.*;
+import java.util.Vector;
+
+public class HorseDAOImpl implements HorseRaceDAO<Horse> {
+
+    @Override
+    public Vector<Horse> findAll() {
+        Vector<Horse> horseVector = new Vector<>();
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_SELECT_ALL_HORSES);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt(1);
+                int number = resultSet.getInt(2);
+                String name = resultSet.getString(3);
+                String breed = resultSet.getString(4);
+                Horse horse = new Horse(id, number, name, breed);
+                horseVector.add(horse);
+            }
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return horseVector;
+    }
+
+    @Override
+    public Horse getObject(int ID) {
+        Horse horse = null;
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_SELECT_HORSES_BY_ID);
+            statement.setInt(1, ID);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt(1);
+                int number = resultSet.getInt(2);
+                String name = resultSet.getString(3);
+                String breed = resultSet.getString(4);
+                horse = new Horse(id, number, name, breed);
+            }
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return horse;
+    }
+
+    @Override
+    public String addObject(Horse object) {
+        String result = null;
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_HORSE);
+            statement.setInt(1, object.getId());
+            statement.setInt(2, object.getNumber());
+            statement.setString(3, object.getName());
+            statement.setString(4, object.getBreed());
+            statement.executeQuery();
+            result = "Horse successfully added!!!";
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+            result = "Error!!! horse don't add";
+        }
+        return result;
+    }
+
+    @Override
+    public String deleteObject(int ID) {
+        String result = null;
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_DELETE_HORSE);
+            statement.setInt(1, ID);
+            statement.executeQuery();
+            result = "Horse successfully deleted!!!";
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+            result = "Error!!! horse don't delete";
+        }
+        return result;
+    }
+
+    @Override
+    public String updateObject(int ID, String[] params) {
+        return null;
+    }
+}

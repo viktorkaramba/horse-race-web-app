@@ -13,7 +13,7 @@
 <!--  </servlet-mapping>-->
 <!--  <servlet>-->
 <!--    <servlet-name>GetRaceServlet</servlet-name>-->
-<!--    <servlet-class>unicyb.horseracingservice.servlets.GetRaceServlet</servlet-class>-->
+<!--    <servlet-class>unicyb.horseracingservice.servlets.RestApiRaceServlet</servlet-class>-->
 <!--  </servlet>-->
   <servlet-mapping>
     <servlet-name>PlaceBetServlet</servlet-name>
