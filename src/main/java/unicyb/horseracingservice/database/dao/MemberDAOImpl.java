@@ -60,11 +60,10 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             statement.setInt(1, object.getId());
             statement.setInt(2, object.getIdHorse());
             statement.setInt(3, object.getIdRace());
-            statement.executeQuery();
+            statement.executeUpdate();
             result = "Member successfully added!!!";
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
             result = "Error!!! member don't add";
         }
         return result;
@@ -77,11 +76,10 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_DELETE_MEMBER);
             statement.setInt(1, ID);
-            statement.executeQuery();
+            statement.executeUpdate();
             result = "Member successfully deleted!!!";
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
             result = "Error!!! member don't delete";
         }
         return result;

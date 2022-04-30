@@ -37,12 +37,14 @@ public class MemberServiceImpl implements HorseRaceService<Member>{
 
     @Override
     public String addObject(Member object) {
-        return null;
+        String result = memberDAO.addObject(object);
+        return result;
     }
 
     @Override
     public String deleteObject(int ID) {
-        return null;
+        String result = memberDAO.deleteObject(ID);
+        return result;
     }
 
     @Override

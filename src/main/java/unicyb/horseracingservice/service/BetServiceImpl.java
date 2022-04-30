@@ -1,48 +1,49 @@
 package unicyb.horseracingservice.service;
 
-import unicyb.horseracingservice.database.dao.HorseDAOImpl;
+import unicyb.horseracingservice.database.dao.BetDAOImpl;
 import unicyb.horseracingservice.database.dao.HorseRaceDAO;
+import unicyb.horseracingservice.entity.Bet;
 import unicyb.horseracingservice.entity.Horse;
 
 import java.util.Vector;
 
-public class HorseServiceImpl implements HorseRaceService<Horse> {
+public class BetServiceImpl implements HorseRaceService<Bet>{
 
-    private HorseRaceDAO<Horse> horseDAO = new HorseDAOImpl();
+    private HorseRaceDAO<Bet> betDAO = new BetDAOImpl();
 
     @Override
-    public Vector<Horse> findAll() {
-        Vector<Horse> horseVector = new Vector<>();
+    public Vector<Bet> findAll() {
+        Vector<Bet> betVector = new Vector<>();
         try {
-            horseVector = horseDAO.findAll();
+            betVector = betDAO.findAll();
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return horseVector;
+        return betVector;
     }
 
     @Override
-    public Horse getObject(int ID) {
-        Horse horse = new Horse();
+    public Bet getObject(int ID) {
+        Bet bet = new Bet();
         try {
-            horse = horseDAO.getObject(ID);
+            bet = betDAO.getObject(ID);
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return horse;
+        return bet;
     }
 
     @Override
-    public String addObject(Horse object) {
-        String result = horseDAO.addObject(object);
+    public String addObject(Bet object) {
+        String result = betDAO.addObject(object);
         return result;
     }
 
     @Override
     public String deleteObject(int ID) {
-        String result = horseDAO.deleteObject(ID);
+        String result = betDAO.deleteObject(ID);
         return result;
     }
 

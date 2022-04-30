@@ -8,13 +8,13 @@ import java.util.Vector;
 
 public class RaceServiceImpl implements HorseRaceService<Race>{
 
-    private HorseRaceDAO<Race> RaceDAO = new RaceDAOImpl();
+    private HorseRaceDAO<Race> raceDAO = new RaceDAOImpl();
 
     @Override
     public Vector<Race> findAll() {
         Vector<Race> raceVector = new Vector<>();
         try {
-            raceVector = RaceDAO.findAll();
+            raceVector = raceDAO.findAll();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -26,7 +26,7 @@ public class RaceServiceImpl implements HorseRaceService<Race>{
     public Race getObject(int ID) {
         Race race = new Race();
         try {
-            race = RaceDAO.getObject(ID);
+            race = raceDAO.getObject(ID);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -36,12 +36,14 @@ public class RaceServiceImpl implements HorseRaceService<Race>{
 
     @Override
     public String addObject(Race object) {
-        return null;
+        String result = raceDAO.addObject(object);
+        return result;
     }
 
     @Override
     public String deleteObject(int ID) {
-        return null;
+        String result = raceDAO.deleteObject(ID);
+        return result;
     }
 
     @Override

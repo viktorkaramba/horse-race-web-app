@@ -27,7 +27,6 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
             }
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
         }
         return raceVector;
     }
@@ -50,7 +49,6 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
             }
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
         }
         return race;
     }
@@ -66,11 +64,10 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
             statement.setString(3, object.getPlace());
             statement.setTimestamp(4, object.getDate());
             statement.setFloat(5, object.getPrize());
-            statement.executeQuery();
+            statement.executeUpdate();
             result = "Race successfully added!!!";
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
             result = "Error!!! race don't add";
         }
         return result;
@@ -83,11 +80,10 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_DELETE_RACE);
             statement.setInt(1, ID);
-            statement.executeQuery();
+            statement.executeUpdate();
             result = "Race successfully deleted!!!";
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
             result = "Error!!! race don't delete";
         }
         return result;

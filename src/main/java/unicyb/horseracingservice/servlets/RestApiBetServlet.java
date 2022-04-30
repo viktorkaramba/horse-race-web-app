@@ -1,12 +1,11 @@
 package unicyb.horseracingservice.servlets;
 
 import com.google.gson.Gson;
-import unicyb.horseracingservice.entity.Horse;
+import unicyb.horseracingservice.entity.Bet;
+import unicyb.horseracingservice.service.BetServiceImpl;
 import unicyb.horseracingservice.service.HorseRaceService;
-import unicyb.horseracingservice.service.HorseServiceImpl;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,14 +16,13 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@WebServlet("/horses/*")
-public class RestApiHorseServlet extends HttpServlet {
-    private HorseRaceService<Horse> horseService;
+public class RestApiBetServlet extends HttpServlet {
+    private HorseRaceService<Bet> betService;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        horseService = new HorseServiceImpl();
+        betService = new BetServiceImpl();
     }
 
     @Override
@@ -35,31 +33,31 @@ public class RestApiHorseServlet extends HttpServlet {
         resp.setContentType("application/json");
         String json = null;
         Gson gson = new Gson();
-        Horse horse = getRaceFromUrl(req.getRequestURL());
-        if(horse != null) {
-            json = gson.toJson(horse);
+        Bet bet = getRaceFromUrl(req.getRequestURL());
+        if(bet != null) {
+            json = gson.toJson(bet);
         }
         else {
-            Vector<Horse> horseVector = horseService.findAll();
-            json = gson.toJson(horseVector);
+            Vector<Bet> betVector = betService.findAll();
+            json = gson.toJson(betVector);
         }
         out.print(json);
         out.close();
     }
 
-    private Horse getRaceFromUrl(StringBuffer requestUrl){
-        Pattern pattern = Pattern.compile("horses/(\\d+)");
+    private Bet getRaceFromUrl(StringBuffer requestUrl){
+        Pattern pattern = Pattern.compile("bets/(\\d+)");
         Matcher matcher = pattern.matcher(requestUrl);
-        Horse horse = null;
+        Bet bet = null;
         if(matcher.find()){
             try {
                 int id = Integer.parseInt(matcher.group(1));
-                horse = horseService.getObject(id);
+                bet = betService.getObject(id);
             }catch (NumberFormatException e){
                 e.printStackTrace();
             }
         }
-        return horse;
+        return bet;
     }
 
     @Override
@@ -67,12 +65,12 @@ public class RestApiHorseServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        if(Pattern.matches("^/horses/$", req.getRequestURL())){
+        if(Pattern.matches("^/bets/$", req.getRequestURL())){
             InputStreamReader reader = new InputStreamReader(req.getInputStream());
-            Horse horse = gson.fromJson(reader, Horse.class);
-            horseService.addObject(horse);
+            Bet bet = gson.fromJson(reader, Bet.class);
+            betService.addObject(bet);
             reader.close();
-            String json = gson.toJson(horse, Horse.class);
+            String json = gson.toJson(bet, Bet.class);
             out.print(json);
         }
     }
@@ -87,11 +85,11 @@ public class RestApiHorseServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        Horse horse = getRaceFromUrl(req.getRequestURL());
-        if(horse != null){
-            horseService.deleteObject(horse.getId());
+        Bet bet = getRaceFromUrl(req.getRequestURL());
+        if(bet != null){
+            betService.deleteObject(bet.getId());
         }
-        String json = gson.toJson(horse, Horse.class);
+        String json = gson.toJson(bet, Bet.class);
         out.print(json);
     }
 }

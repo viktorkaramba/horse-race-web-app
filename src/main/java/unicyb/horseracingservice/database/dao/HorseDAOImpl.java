@@ -63,11 +63,10 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
             statement.setInt(2, object.getNumber());
             statement.setString(3, object.getName());
             statement.setString(4, object.getBreed());
-            statement.executeQuery();
+            statement.executeUpdate();
             result = "Horse successfully added!!!";
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
             result = "Error!!! horse don't add";
         }
         return result;
@@ -80,11 +79,10 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_DELETE_HORSE);
             statement.setInt(1, ID);
-            statement.executeQuery();
+            statement.executeUpdate();
             result = "Horse successfully deleted!!!";
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
             result = "Error!!! horse don't delete";
         }
         return result;
