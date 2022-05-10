@@ -4,6 +4,7 @@ import unicyb.horseracingservice.database.dao.HorseDAOImpl;
 import unicyb.horseracingservice.database.dao.HorseRaceDAO;
 import unicyb.horseracingservice.entity.Horse;
 
+import java.util.Map;
 import java.util.Vector;
 
 public class HorseServiceImpl implements HorseRaceService<Horse> {
@@ -47,7 +48,30 @@ public class HorseServiceImpl implements HorseRaceService<Horse> {
     }
 
     @Override
+    public Vector<Horse> getObjectsByParameter(Vector<Integer> idVector) {
+        Vector<Horse> horseVector = new Vector<>();
+        try {
+            horseVector = horseDAO.getObjectsByParameter(idVector);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return horseVector;
+    }
+
+    @Override
+    public Map<Integer,Horse> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        return null;
+    }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
+        return null;
+    }
+
+    @Override
     public String updateObject(int ID, String[] params) {
         return null;
     }
+
 }

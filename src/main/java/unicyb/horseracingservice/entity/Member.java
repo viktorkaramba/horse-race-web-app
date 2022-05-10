@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id", "idHorse", "idRace"})
+@JsonPropertyOrder({"id", "idRace", "idHorse"})
 public class Member {
     private int id;
-    private int idHorse;
     private int idRace;
+    private int idHorse;
 }

@@ -5,6 +5,7 @@ import unicyb.horseracingservice.entity.Horse;
 import unicyb.horseracingservice.service.HorseRaceService;
 import unicyb.horseracingservice.service.HorseServiceImpl;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,13 +68,15 @@ public class RestApiHorseServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        if(Pattern.matches("^/horses/$", req.getRequestURL())){
+        if(Pattern.matches(".*/horses/$", req.getRequestURL())){
             InputStreamReader reader = new InputStreamReader(req.getInputStream());
             Horse horse = gson.fromJson(reader, Horse.class);
             horseService.addObject(horse);
             reader.close();
             String json = gson.toJson(horse, Horse.class);
+            System.out.println(json);
             out.print(json);
+
         }
     }
 

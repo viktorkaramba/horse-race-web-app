@@ -2,12 +2,23 @@ package unicyb.horseracingservice.database.dao;
 
 import unicyb.horseracingservice.database.DatabaseConnection;
 import unicyb.horseracingservice.database.SQLQuery;
+import unicyb.horseracingservice.entity.Horse;
+import unicyb.horseracingservice.entity.Member;
 import unicyb.horseracingservice.entity.Race;
 
 import java.sql.*;
+import java.util.Map;
 import java.util.Vector;
 
 public class RaceDAOImpl implements HorseRaceDAO<Race>{
+
+    private HorseRaceDAO<Member> memberDAO = new MemberDAOImpl();
+    private HorseRaceDAO<Horse> horseDAO = new HorseDAOImpl();
+
+    @Override
+    public Map<Integer, Race> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        return null;
+    }
 
     @Override
     public Vector<Race> findAll() {
@@ -22,7 +33,9 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
                 String place = resultSet.getString(3);
                 Timestamp date = resultSet.getTimestamp(4);
                 Float prize = resultSet.getFloat(5);
-                Race race = new Race(id, name, place, date, prize);
+                Vector<Integer> idHorsesVector = memberDAO.getObjectsByParameter(id);
+                Vector<Horse> horseVector = horseDAO.getObjectsByParameter(idHorsesVector);
+                Race race = new Race(id, name, place, date, prize, horseVector);
                 raceVector.add(race);
             }
         }
@@ -45,7 +58,9 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
                 String place = resultSet.getString(3);
                 Timestamp date = resultSet.getTimestamp(4);
                 Float prize = resultSet.getFloat(5);
-                race = new Race(id, name, place, date, prize);
+                Vector<Integer> idHorsesVector = memberDAO.getObjectsByParameter(id);
+                Vector<Horse> horseVector = horseDAO.getObjectsByParameter(idHorsesVector);
+                race = new Race(id, name, place, date, prize, horseVector);
             }
         }
         catch (SQLException | ClassNotFoundException e){
@@ -91,6 +106,16 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
 
     @Override
     public String updateObject(int ID, String[] params) {
+        return null;
+    }
+
+    @Override
+    public Vector<Race> getObjectsByParameter(Vector<Integer> idVector) {
+        return null;
+    }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
         return null;
     }
 }

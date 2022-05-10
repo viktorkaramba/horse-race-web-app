@@ -2,6 +2,8 @@ package unicyb.horseracingservice.servlets;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import unicyb.horseracingservice.entity.Horse;
+import unicyb.horseracingservice.entity.Member;
 import unicyb.horseracingservice.entity.Race;
 import unicyb.horseracingservice.service.HorseRaceService;
 import unicyb.horseracingservice.service.RaceServiceImpl;
@@ -29,15 +31,15 @@ public class RestApiRaceServlet extends HttpServlet {
         raceService = new RaceServiceImpl();
     }
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         String json = null;
         Gson gson = new GsonBuilder()
-                .setDateFormat("dd.MM.yyyy HH:mm:ss").create();
+                .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         Race race = getRaceFromUrl(req.getRequestURL());
         if(race != null) {
             json = gson.toJson(race);
@@ -70,8 +72,8 @@ public class RestApiRaceServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new GsonBuilder()
-                .setDateFormat("dd.MM.yyyy HH:mm:ss").create();
-        if(Pattern.matches("^/races/$", req.getRequestURL())){
+                .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+        if(Pattern.matches(".*/races/$", req.getRequestURL())){
             InputStreamReader reader = new InputStreamReader(req.getInputStream());
             Race race = gson.fromJson(reader, Race.class);
             raceService.addObject(race);

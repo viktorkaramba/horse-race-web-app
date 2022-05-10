@@ -3,11 +3,24 @@ package unicyb.horseracingservice.service;
 import unicyb.horseracingservice.database.dao.BetDAOImpl;
 import unicyb.horseracingservice.database.dao.HorseRaceDAO;
 import unicyb.horseracingservice.entity.Bet;
-import unicyb.horseracingservice.entity.Horse;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class BetServiceImpl implements HorseRaceService<Bet>{
+
+    @Override
+    public Map<Integer, Bet> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        Map<Integer, Bet> idUserMap = new HashMap<>();
+        try {
+            idUserMap = betDAO.getObjectsByTwoParameters(ID_1, ID_2);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return idUserMap;
+    }
 
     private HorseRaceDAO<Bet> betDAO = new BetDAOImpl();
 
@@ -49,6 +62,16 @@ public class BetServiceImpl implements HorseRaceService<Bet>{
 
     @Override
     public String updateObject(int ID, String[] params) {
+        return null;
+    }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
+        return null;
+    }
+
+    @Override
+    public Vector<Bet> getObjectsByParameter(Vector<Integer> idVector) {
         return null;
     }
 }

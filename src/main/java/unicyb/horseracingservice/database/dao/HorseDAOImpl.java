@@ -5,6 +5,7 @@ import unicyb.horseracingservice.database.SQLQuery;
 import unicyb.horseracingservice.entity.Horse;
 
 import java.sql.*;
+import java.util.Map;
 import java.util.Vector;
 
 public class HorseDAOImpl implements HorseRaceDAO<Horse> {
@@ -89,7 +90,42 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
     }
 
     @Override
+    public Map<Integer, Horse> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        return null;
+    }
+
+    @Override
     public String updateObject(int ID, String[] params) {
         return null;
     }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
+        return null;
+    }
+
+    @Override
+    public Vector<Horse> getObjectsByParameter(Vector<Integer> idVector) {
+        Vector<Horse> horseVector = new Vector<>();
+        for (int ID: idVector) {
+            try {
+                Connection con = DatabaseConnection.initializeDatabase();
+                PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_SELECT_HORSES_BY_ID);
+                statement.setInt(1, ID);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()){
+                    int id = resultSet.getInt(1);
+                    int number = resultSet.getInt(2);
+                    String name = resultSet.getString(3);
+                    String breed = resultSet.getString(4);
+                    Horse horse = new Horse(id, number, name, breed);
+                    horseVector.add(horse);
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return horseVector;
+    }
+
 }

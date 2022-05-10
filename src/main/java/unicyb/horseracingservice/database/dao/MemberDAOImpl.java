@@ -5,6 +5,7 @@ import unicyb.horseracingservice.database.SQLQuery;
 import unicyb.horseracingservice.entity.Member;
 
 import java.sql.*;
+import java.util.Map;
 import java.util.Vector;
 
 public class MemberDAOImpl implements HorseRaceDAO<Member>{
@@ -18,9 +19,9 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 int id = resultSet.getInt(1);
-                int idHorse = resultSet.getInt(2);
-                int idRace = resultSet.getInt(3);
-                Member member = new Member(id, idHorse, idRace);
+                int idRace = resultSet.getInt(2);
+                int idHorse = resultSet.getInt(3);
+                Member member = new Member(id, idRace, idHorse);
                 memberVector.add(member);
             }
         }
@@ -40,9 +41,9 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 int id = resultSet.getInt(1);
-                int idHorse = resultSet.getInt(2);
-                int idRace = resultSet.getInt(3);
-                member = new Member(id, idHorse, idRace);
+                int idRace = resultSet.getInt(2);
+                int idHorse = resultSet.getInt(3);
+                member = new Member(id, idRace, idHorse);
             }
         }
         catch (SQLException | ClassNotFoundException e){
@@ -58,8 +59,8 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_MEMBER);
             statement.setInt(1, object.getId());
-            statement.setInt(2, object.getIdHorse());
-            statement.setInt(3, object.getIdRace());
+            statement.setInt(2, object.getIdRace());
+            statement.setInt(3, object.getIdHorse());
             statement.executeUpdate();
             result = "Member successfully added!!!";
         }
@@ -90,24 +91,31 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
         return null;
     }
 
-    public Member getMemberByRace(int IDRace){
-        Member member = null;
+    @Override
+    public Map<Integer, Member> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        return null;
+    }
+
+    @Override
+    public Vector<Member> getObjectsByParameter(Vector<Integer> idVector) {
+        return null;
+    }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
+        Vector<Integer> idHorseVector = new Vector<>();;
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_SELECT_MEMBERS_BY_RACE);
-            statement.setInt(1, IDRace);
+            statement.setInt(1, ID);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                int id = resultSet.getInt(1);
-                int idHorse = resultSet.getInt(2);
-                int idRace = resultSet.getInt(3);
-                member = new Member(id, idHorse, idRace);
+                int idHorse = resultSet.getInt(3);
+                idHorseVector.add(idHorse);
             }
         }
         catch (SQLException | ClassNotFoundException e){
-            e.printStackTrace();
         }
-        return member;
-
+        return idHorseVector;
     }
 }

@@ -4,11 +4,27 @@ import unicyb.horseracingservice.entity.Race;
 import unicyb.horseracingservice.database.dao.HorseRaceDAO;
 import unicyb.horseracingservice.database.dao.RaceDAOImpl;
 
+import java.util.Map;
 import java.util.Vector;
 
 public class RaceServiceImpl implements HorseRaceService<Race>{
 
     private HorseRaceDAO<Race> raceDAO = new RaceDAOImpl();
+
+    @Override
+    public Map<Integer, Race> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        return null;
+    }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
+        return null;
+    }
+
+    @Override
+    public Vector<Race> getObjectsByParameter(Vector<Integer> idVector) {
+        return null;
+    }
 
     @Override
     public Vector<Race> findAll() {

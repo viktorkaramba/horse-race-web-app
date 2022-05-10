@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class BetDAOImpl implements HorseRaceDAO<Bet> {
@@ -98,6 +100,36 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
 
     @Override
     public String updateObject(int ID, String[] params) {
+        return null;
+    }
+
+    @Override
+    public Map<Integer, Bet> getObjectsByTwoParameters(int ID_1, int ID_2) {
+        Map<Integer, Bet> idUserMap = new HashMap<>();
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_SELECT_WIN_BETS_BY_RACE_HORSE);
+            statement.setInt(1, ID_1);
+            statement.setInt(2, ID_2);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Bet bet = getBet(resultSet);
+                idUserMap.put(bet.getIdUser(), bet);
+            }
+        }
+        catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return idUserMap;
+    }
+
+    @Override
+    public Vector<Bet> getObjectsByParameter(Vector<Integer> idVector) {
+        return null;
+    }
+
+    @Override
+    public Vector<Integer> getObjectsByParameter(int ID) {
         return null;
     }
 }
