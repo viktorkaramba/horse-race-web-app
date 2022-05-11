@@ -1,0 +1,31 @@
+<button (click)="logout()" class="btn-primary button">Logout</button>
+<div class="container">
+<div class="aside-block-1">
+
+</div>
+  <div class="main_block">
+    <div *ngFor="let race of races; let i = index" class="block">
+      <p class="header">{{race.name}}</p>
+      <p class="info">Place: {{race.place}} | Date: {{race.date}} | Prize: {{race.prize}}</p>
+      <form #horseForm="ngForm" (ngSubmit)="addResult(horseForm)">
+      <div class="form-group" >
+        <p>
+          <span *ngFor="let horse of race.horses ; let j = index" class="info">
+            <label class="radio-inline">
+            <input type="radio" value="{{race.id}}, {{horse.id}}" name="result" ngModel>
+            {{horse.name}}
+             <span class="coefficient">{{coefficients[i][j]}}x</span>
+            </label>
+          </span>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <button type="submit" class="btn-primary button">Add result</button>
+      </div>
+      </form>
+    </div>
+  </div>
+<div class="aside-block-2">
+
+</div>
+</div>
