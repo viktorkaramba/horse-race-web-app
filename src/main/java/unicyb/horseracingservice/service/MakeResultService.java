@@ -33,11 +33,10 @@ public class MakeResultService {
             float win = user.getBalance() + idUserMap.get(user.getId()).getPrice();
             System.out.println(win);
             String new_balance = Float.toString(win);
-            String [] params = new String[]{new_balance};
-            userHorseRaceDAO.updateObject(user.getId(), params);
+            userHorseRaceDAO.updateObject(user.getId(), new String[]{new_balance});
         }
-        raceService.deleteObject(idRace);
-
+        String new_is_over = "TRUE";
+        raceService.updateObject(idRace, new String[]{new_is_over});
     }
 
 }

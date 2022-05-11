@@ -5,6 +5,7 @@ import com.google.gson.JsonIOException;
 import unicyb.horseracingservice.entity.Horse;
 import unicyb.horseracingservice.entity.ResponseResult;
 import unicyb.horseracingservice.entity.Coefficient;
+import unicyb.horseracingservice.service.AuthorizationService;
 import unicyb.horseracingservice.service.CoefficientServiceImpl;
 import unicyb.horseracingservice.service.HorseRaceService;
 
@@ -25,11 +26,13 @@ import java.util.regex.Pattern;
 public class CoefficientServlet extends HttpServlet {
 
     private HorseRaceService<Coefficient> coefficientService;
+    private AuthorizationService authorizationService;
 
     @Override
     public void init() throws ServletException {
         super.init();
         coefficientService = new CoefficientServiceImpl();
+        authorizationService = new AuthorizationService();
     }
 
     @Override
@@ -88,15 +91,20 @@ public class CoefficientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException, JsonIOException {
+
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        InputStreamReader reader = new InputStreamReader(req.getInputStream());
-        Coefficient coefficients = gson.fromJson(reader, Coefficient.class);
-        System.out.println(coefficients);
-        coefficientService.addObject(coefficients);
-        reader.close();
-        String json = gson.toJson(coefficients, Coefficient.class);
-        out.print(json);
+        if(authorizationService.hasAuthority(req, "bookmaker")) {
+            if(Pattern.matches(".*/coefficients/$", req.getRequestURL())) {
+                InputStreamReader reader = new InputStreamReader(req.getInputStream());
+                Coefficient coefficients = gson.fromJson(reader, Coefficient.class);
+                System.out.println(coefficients);
+                coefficientService.addObject(coefficients);
+                reader.close();
+                String json = gson.toJson(coefficients, Coefficient.class);
+                out.print(json);
+            }
+        }
     }
 }

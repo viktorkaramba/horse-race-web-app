@@ -69,6 +69,7 @@ public class RaceServiceImpl implements HorseRaceService<Race>{
 
     @Override
     public String updateObject(int ID, String[] params) {
-        return null;
+        String result = raceDAO.updateObject(ID, params);
+        return result;
     }
 }

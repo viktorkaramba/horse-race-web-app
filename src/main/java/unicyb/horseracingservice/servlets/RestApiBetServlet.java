@@ -2,6 +2,7 @@ package unicyb.horseracingservice.servlets;
 
 import com.google.gson.Gson;
 import unicyb.horseracingservice.entity.Bet;
+import unicyb.horseracingservice.service.AuthorizationService;
 import unicyb.horseracingservice.service.BetServiceImpl;
 import unicyb.horseracingservice.service.HorseRaceService;
 
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 @WebServlet("/bets/*")
 public class RestApiBetServlet extends HttpServlet {
     private HorseRaceService<Bet> betService;
-
+    private AuthorizationService authorizationService;
     @Override
     public void init() throws ServletException {
         super.init();
@@ -67,21 +68,16 @@ public class RestApiBetServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-//        if(Pattern.matches("^/bets/$", req.getRequestURL())){
-//            InputStreamReader reader = new InputStreamReader(req.getInputStream());
-//            Bet bet = gson.fromJson(reader, Bet.class);
-//            System.out.println(bet.toString());
-//            betService.addObject(bet);
-//            reader.close();
-//            String json = gson.toJson(bet, Bet.class);
-//            out.print(json);
-//        }
-        InputStreamReader reader = new InputStreamReader(req.getInputStream());
-        Bet bet = gson.fromJson(reader, Bet.class);
-        betService.addObject(bet);
-        reader.close();
-        String json = gson.toJson(bet, Bet.class);
-        out.print(json);
+        if(authorizationService.hasAuthority(req, "user")) {
+            if (Pattern.matches("^/bets/$", req.getRequestURL())) {
+                InputStreamReader reader = new InputStreamReader(req.getInputStream());
+                Bet bet = gson.fromJson(reader, Bet.class);
+                betService.addObject(bet);
+                reader.close();
+                String json = gson.toJson(bet, Bet.class);
+                out.print(json);
+            }
+        }
     }
 
     @Override

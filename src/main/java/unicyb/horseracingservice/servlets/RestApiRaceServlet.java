@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import unicyb.horseracingservice.entity.Horse;
 import unicyb.horseracingservice.entity.Member;
 import unicyb.horseracingservice.entity.Race;
+import unicyb.horseracingservice.service.AuthorizationService;
 import unicyb.horseracingservice.service.HorseRaceService;
 import unicyb.horseracingservice.service.RaceServiceImpl;
 
@@ -24,11 +25,13 @@ import java.util.regex.Pattern;
 public class RestApiRaceServlet extends HttpServlet {
 
     private HorseRaceService<Race> raceService;
+    private AuthorizationService authorizationService;
 
     @Override
     public void init() throws ServletException{
         super.init();
         raceService = new RaceServiceImpl();
+        authorizationService = new AuthorizationService();
     }
 
 
@@ -73,14 +76,17 @@ public class RestApiRaceServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-        if(Pattern.matches(".*/races/$", req.getRequestURL())){
-            InputStreamReader reader = new InputStreamReader(req.getInputStream());
-            Race race = gson.fromJson(reader, Race.class);
-            raceService.addObject(race);
-            reader.close();
-            String json = gson.toJson(race, Race.class);
-            out.print(json);
+        if(authorizationService.hasAuthority(req, "user")) {
+            if(Pattern.matches(".*/races/$", req.getRequestURL())){
+                InputStreamReader reader = new InputStreamReader(req.getInputStream());
+                Race race = gson.fromJson(reader, Race.class);
+                raceService.addObject(race);
+                reader.close();
+                String json = gson.toJson(race, Race.class);
+                out.print(json);
+            }
         }
+
     }
 
     @Override

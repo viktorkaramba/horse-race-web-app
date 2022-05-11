@@ -38,9 +38,10 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
                 String place = resultSet.getString(3);
                 Timestamp date = resultSet.getTimestamp(4);
                 Float prize = resultSet.getFloat(5);
+                Boolean isOver = resultSet.getBoolean(6);
                 Vector<Integer> idHorsesVector = memberDAO.getObjectsByParameter(id);
                 Vector<Horse> horseVector = horseDAO.getObjectsByParameter(idHorsesVector);
-                Race race = new Race(id, name, place, date, prize, horseVector);
+                Race race = new Race(id, name, place, date, prize, horseVector, isOver);
                 raceVector.add(race);
             }
             con.close();
@@ -64,9 +65,10 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
                 String place = resultSet.getString(3);
                 Timestamp date = resultSet.getTimestamp(4);
                 Float prize = resultSet.getFloat(5);
+                Boolean isOver = resultSet.getBoolean(6);
                 Vector<Integer> idHorsesVector = memberDAO.getObjectsByParameter(id);
                 Vector<Horse> horseVector = horseDAO.getObjectsByParameter(idHorsesVector);
-                race = new Race(id, name, place, date, prize, horseVector);
+                race = new Race(id, name, place, date, prize, horseVector, isOver);
             }
             con.close();
         }
@@ -86,6 +88,7 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
             statement.setString(3, object.getPlace());
             statement.setTimestamp(4, object.getDate());
             statement.setFloat(5, object.getPrize());
+            statement.setBoolean(6, object.getIsOver());
             statement.executeUpdate();
             result = "Race successfully added!!!";
             con.close();
@@ -116,7 +119,21 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
 
     @Override
     public String updateObject(int ID, String[] params) {
-        return null;
+        String result = null;
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_UPDATE_RACE);
+            Boolean newIsOver = Boolean.parseBoolean(params[0]);
+            statement.setBoolean(1, newIsOver);
+            statement.setInt(2, ID);
+            statement.executeUpdate();
+            result = "Race successfully updated!!!";
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException e){
+            result = "Error!!! race don't updated";
+        }
+        return result;
     }
 
     @Override

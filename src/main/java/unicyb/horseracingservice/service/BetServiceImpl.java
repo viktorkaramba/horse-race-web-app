@@ -67,7 +67,8 @@ public class BetServiceImpl implements HorseRaceService<Bet>{
 
     @Override
     public String updateObject(int ID, String[] params) {
-        return null;
+        String result = betDAO.updateObject(ID, params);
+        return result;
     }
 
     @Override

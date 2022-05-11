@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 @WebServlet("/make-result/*")
 public class MakeResultServlet extends HttpServlet {
@@ -40,17 +41,12 @@ public class MakeResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("application/json");
-//        if(authorizationService.hasAuthority(req, "admin")) {
-//            if (Pattern.matches(".*/make-reslut/$", req.getRequestURL())) {
-//                int idRace = Integer.parseInt(req.getParameter("idRace"));
-//                int idHorse = Integer.parseInt(req.getParameter("idHorse"));
-//                System.out.println(idRace + " " + idHorse);
-//            }
-//        }
-        Gson gson = new Gson();
-        InputStreamReader reader = new InputStreamReader(req.getInputStream());
-        ResponseResult responseResult = gson.fromJson(reader, ResponseResult.class);
-        makeResultService.updateWinnersBalance(responseResult.getIdFirst(), responseResult.getIdSecond());
-        reader.close();
+        if(authorizationService.hasAuthority(req, "admin")) {
+            Gson gson = new Gson();
+            InputStreamReader reader = new InputStreamReader(req.getInputStream());
+            ResponseResult responseResult = gson.fromJson(reader, ResponseResult.class);
+            makeResultService.updateWinnersBalance(responseResult.getIdFirst(), responseResult.getIdSecond());
+            reader.close();
+        }
     }
 }

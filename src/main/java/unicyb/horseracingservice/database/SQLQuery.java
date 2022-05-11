@@ -5,6 +5,7 @@ public class SQLQuery {
     public static final String SQL_SELECT_RACES_BY_ID="SELECT * FROM RACES WHERE ID = ?";
     public static final String SQL_INSERT_RACE="INSERT INTO RACES VALUES(?, ?, ?, ?, ?)";
     public static final String SQL_DELETE_RACE="DELETE FROM RACES WHERE ID = ?";
+    public static final String SQL_UPDATE_RACE="UPDATE RACES SET ISOVER = ? WHERE ID = ?";
     public static final String SQL_SELECT_ALL_MEMBERS="SELECT * FROM MEMBERS";
     public static final String SQL_SELECT_MEMBERS_BY_ID="SELECT * FROM MEMBERS WHERE ID = ?";
     public static final String SQL_SELECT_MEMBERS_BY_RACE="SELECT * FROM MEMBERS WHERE ID_RA = ?";

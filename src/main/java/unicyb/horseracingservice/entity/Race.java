@@ -11,7 +11,7 @@ import java.util.Vector;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id", "name", "place", "date", "prize", "horses"})
+@JsonPropertyOrder({"id", "name", "place", "date", "prize", "horses", "isOver"})
 public class Race {
     private int id;
     private String name;
@@ -19,4 +19,5 @@ public class Race {
     private Timestamp date;
     private float prize;
     private Vector<Horse> horses;
+    private Boolean isOver;
 }

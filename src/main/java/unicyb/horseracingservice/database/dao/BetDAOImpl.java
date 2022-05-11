@@ -103,7 +103,21 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
 
     @Override
     public String updateObject(int ID, String[] params) {
-        return null;
+        String result = null;
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_UPDATE_USER);
+            Float new_balance = Float.parseFloat(params[0]);
+            statement.setFloat(1, new_balance);
+            statement.setInt(2, ID);
+            statement.executeUpdate();
+            result = "User successfully updated!!!";
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException e){
+            result = "Error!!! user don't updated";
+        }
+        return result;
     }
 
     @Override
