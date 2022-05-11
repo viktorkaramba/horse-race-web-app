@@ -29,6 +29,7 @@ public class RestApiUserServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         userDAO = new UserDaoImpl();
+        authorizationService = new AuthorizationService();
     }
 
     @Override

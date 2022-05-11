@@ -5,7 +5,7 @@ import unicyb.horseracingservice.entity.Horse;
 import unicyb.horseracingservice.service.HorseRaceService;
 import unicyb.horseracingservice.service.HorseServiceImpl;
 
-import javax.annotation.security.RolesAllowed;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

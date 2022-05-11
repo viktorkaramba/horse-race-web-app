@@ -23,7 +23,6 @@ public class CORSFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
         String requestOrigin = request.getHeader("Origin");
         response.addHeader("Access-Control-Allow-Origin", requestOrigin);
         response.addHeader("Access-Control-Allow-Headers", "*");

@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.regex.Pattern;
+
 
 @WebServlet("/make-result/*")
 public class MakeResultServlet extends HttpServlet {
@@ -28,13 +27,6 @@ public class MakeResultServlet extends HttpServlet {
         horseService = new HorseServiceImpl();
         makeResultService = new MakeResultService();
         authorizationService = new AuthorizationService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        out.print("Hello make-result");
     }
 
     @Override

@@ -26,6 +26,7 @@ public class RestApiBetServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         betService = new BetServiceImpl();
+        authorizationService = new AuthorizationService();
     }
 
     @Override
@@ -69,7 +70,8 @@ public class RestApiBetServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
         if(authorizationService.hasAuthority(req, "user")) {
-            if (Pattern.matches("^/bets/$", req.getRequestURL())) {
+            System.out.println("In bet");
+            if (Pattern.matches(".*/bets/$", req.getRequestURL())) {
                 InputStreamReader reader = new InputStreamReader(req.getInputStream());
                 Bet bet = gson.fromJson(reader, Bet.class);
                 betService.addObject(bet);

@@ -2,8 +2,6 @@ package unicyb.horseracingservice.servlets;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import unicyb.horseracingservice.entity.Horse;
-import unicyb.horseracingservice.entity.Member;
 import unicyb.horseracingservice.entity.Race;
 import unicyb.horseracingservice.service.AuthorizationService;
 import unicyb.horseracingservice.service.HorseRaceService;
@@ -86,7 +84,6 @@ public class RestApiRaceServlet extends HttpServlet {
                 out.print(json);
             }
         }
-
     }
 
     @Override

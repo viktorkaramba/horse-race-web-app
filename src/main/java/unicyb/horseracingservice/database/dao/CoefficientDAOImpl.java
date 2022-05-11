@@ -3,7 +3,6 @@ package unicyb.horseracingservice.database.dao;
 import unicyb.horseracingservice.database.DatabaseConnection;
 import unicyb.horseracingservice.database.SQLQuery;
 import unicyb.horseracingservice.entity.Coefficient;
-import unicyb.horseracingservice.entity.Horse;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
