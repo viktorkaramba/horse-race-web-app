@@ -1,8 +1,7 @@
 package unicyb.horseracingservice.servlets;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import unicyb.horseracingservice.entity.BetResult;
+import unicyb.horseracingservice.entity.ResponseResult;
 import unicyb.horseracingservice.entity.Horse;
 import unicyb.horseracingservice.service.*;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.regex.Pattern;
 
 @WebServlet("/make-result/*")
 public class MakeResultServlet extends HttpServlet {
@@ -51,7 +49,8 @@ public class MakeResultServlet extends HttpServlet {
 //        }
         Gson gson = new Gson();
         InputStreamReader reader = new InputStreamReader(req.getInputStream());
-        BetResult betResult = gson.fromJson(reader, BetResult.class);
-        makeResultService.updateWinnersBalance(betResult.getIdRace(), betResult.getIdHorse());
+        ResponseResult responseResult = gson.fromJson(reader, ResponseResult.class);
+        makeResultService.updateWinnersBalance(responseResult.getIdFirst(), responseResult.getIdSecond());
+        reader.close();
     }
 }

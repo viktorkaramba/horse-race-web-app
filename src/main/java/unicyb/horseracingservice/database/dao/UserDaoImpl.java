@@ -25,6 +25,7 @@ public class UserDaoImpl implements HorseRaceDAO<User>{
                 User user = new User(id, name, balance);
                 userVector.add(user);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
         }
@@ -45,6 +46,7 @@ public class UserDaoImpl implements HorseRaceDAO<User>{
                 Float balance= resultSet.getFloat(3);
                 user = new User(id, name, balance);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
         }
@@ -62,6 +64,7 @@ public class UserDaoImpl implements HorseRaceDAO<User>{
             statement.setFloat(3, object.getBalance());
             statement.executeUpdate();
             result = "User successfully added!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! user don't add";
@@ -77,10 +80,11 @@ public class UserDaoImpl implements HorseRaceDAO<User>{
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_DELETE_USER);
             statement.setInt(1, ID);
             statement.executeUpdate();
-            result = "Us successfully deleted!!!";
+            result = "User successfully deleted!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
-            result = "Error!!! race don't delete";
+            result = "Error!!! user don't delete";
         }
         return result;
     }
@@ -96,11 +100,33 @@ public class UserDaoImpl implements HorseRaceDAO<User>{
             statement.setInt(2, ID);
             statement.executeUpdate();
             result = "User successfully updated!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! user don't updated";
         }
         return result;
+    }
+
+    @Override
+    public  User getObjectByParameter(String parameter) {
+        User user = null;
+        try {
+            Connection con = DatabaseConnection.initializeDatabase();
+            PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_SELECT_USER_BY_USERNAME);
+            statement.setString(1, parameter);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                Float balance= resultSet.getFloat(3);
+                user = new User(id, name, balance);
+            }
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException e){
+        }
+        return user;
     }
 
     @Override

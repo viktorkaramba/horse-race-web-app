@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"idRace", "idHorse"})
-public class BetResult {
-    private int idRace;
-    private int idHorse;
+@JsonPropertyOrder({"idFirst", "idSecond"})
+public class ResponseResult {
+    private int idFirst;
+    private int idSecond;
 }

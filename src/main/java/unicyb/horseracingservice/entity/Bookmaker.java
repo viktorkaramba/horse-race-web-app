@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonPropertyOrder({"id", "username"})
 public class Bookmaker {
-    int id;
-    String username;
+    private int id;
+    private String username;
 }

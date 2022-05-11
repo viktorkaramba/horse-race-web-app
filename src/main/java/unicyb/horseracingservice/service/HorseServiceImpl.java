@@ -60,6 +60,11 @@ public class HorseServiceImpl implements HorseRaceService<Horse> {
     }
 
     @Override
+    public Integer getObjectByParameter(int ID) {
+        return null;
+    }
+
+    @Override
     public Map<Integer,Horse> getObjectsByTwoParameters(int ID_1, int ID_2) {
         return null;
     }

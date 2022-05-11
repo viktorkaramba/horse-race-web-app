@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonPropertyOrder({"id", "username"})
 public class Admin extends User{
-    int id;
-    String username;
+    private int id;
+    private String username;
 }

@@ -12,6 +12,11 @@ public class RaceServiceImpl implements HorseRaceService<Race>{
     private HorseRaceDAO<Race> raceDAO = new RaceDAOImpl();
 
     @Override
+    public Integer getObjectByParameter(int ID) {
+        return null;
+    }
+
+    @Override
     public Map<Integer, Race> getObjectsByTwoParameters(int ID_1, int ID_2) {
         return null;
     }

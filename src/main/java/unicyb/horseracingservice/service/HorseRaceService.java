@@ -10,6 +10,7 @@ public interface HorseRaceService<T> {
     public String deleteObject(int ID);
     public String updateObject(int ID, String[] params);
     public Vector<Integer> getObjectsByParameter(int ID);
+    public Integer getObjectByParameter(int ID);
     public Vector<T> getObjectsByParameter(Vector<Integer> idVector);
     public Map<Integer, T> getObjectsByTwoParameters(int ID_1, int ID_2);
 }

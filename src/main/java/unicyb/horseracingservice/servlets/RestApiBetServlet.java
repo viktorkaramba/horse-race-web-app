@@ -6,6 +6,7 @@ import unicyb.horseracingservice.service.BetServiceImpl;
 import unicyb.horseracingservice.service.HorseRaceService;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@WebServlet("/bets/*")
 public class RestApiBetServlet extends HttpServlet {
     private HorseRaceService<Bet> betService;
 
@@ -65,14 +67,21 @@ public class RestApiBetServlet extends HttpServlet {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
-        if(Pattern.matches("^/bets/$", req.getRequestURL())){
-            InputStreamReader reader = new InputStreamReader(req.getInputStream());
-            Bet bet = gson.fromJson(reader, Bet.class);
-            betService.addObject(bet);
-            reader.close();
-            String json = gson.toJson(bet, Bet.class);
-            out.print(json);
-        }
+//        if(Pattern.matches("^/bets/$", req.getRequestURL())){
+//            InputStreamReader reader = new InputStreamReader(req.getInputStream());
+//            Bet bet = gson.fromJson(reader, Bet.class);
+//            System.out.println(bet.toString());
+//            betService.addObject(bet);
+//            reader.close();
+//            String json = gson.toJson(bet, Bet.class);
+//            out.print(json);
+//        }
+        InputStreamReader reader = new InputStreamReader(req.getInputStream());
+        Bet bet = gson.fromJson(reader, Bet.class);
+        betService.addObject(bet);
+        reader.close();
+        String json = gson.toJson(bet, Bet.class);
+        out.print(json);
     }
 
     @Override

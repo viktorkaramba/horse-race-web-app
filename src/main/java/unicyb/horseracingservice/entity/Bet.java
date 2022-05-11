@@ -15,4 +15,12 @@ public class Bet {
     private int idHorse;
     private float price;
     private int top;
+
+    Bet(int idUser, int idRace, int idHorse, float price, int top){
+        this.idUser = idUser;
+        this.idRace = idRace;
+        this.idHorse = idHorse;
+        this.price = price;
+        this.top = top;
+    }
 }

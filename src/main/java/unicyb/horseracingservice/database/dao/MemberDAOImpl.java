@@ -44,6 +44,7 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
                 int idRace = resultSet.getInt(2);
                 int idHorse = resultSet.getInt(3);
                 member = new Member(id, idRace, idHorse);
+                con.close();
             }
         }
         catch (SQLException | ClassNotFoundException e){
@@ -63,6 +64,7 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             statement.setInt(3, object.getIdHorse());
             statement.executeUpdate();
             result = "Member successfully added!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! member don't add";
@@ -79,6 +81,7 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
             statement.setInt(1, ID);
             statement.executeUpdate();
             result = "Member successfully deleted!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! member don't delete";
@@ -88,6 +91,11 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
 
     @Override
     public String updateObject(int ID, String[] params) {
+        return null;
+    }
+
+    @Override
+    public Member getObjectByParameter(String parameter) {
         return null;
     }
 
@@ -113,6 +121,7 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
                 int idHorse = resultSet.getInt(3);
                 idHorseVector.add(idHorse);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
         }

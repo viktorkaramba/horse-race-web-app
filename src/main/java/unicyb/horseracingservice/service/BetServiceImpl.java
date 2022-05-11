@@ -10,6 +10,8 @@ import java.util.Vector;
 
 public class BetServiceImpl implements HorseRaceService<Bet>{
 
+    private HorseRaceDAO<Bet> betDAO = new BetDAOImpl();
+
     @Override
     public Map<Integer, Bet> getObjectsByTwoParameters(int ID_1, int ID_2) {
         Map<Integer, Bet> idUserMap = new HashMap<>();
@@ -22,7 +24,10 @@ public class BetServiceImpl implements HorseRaceService<Bet>{
         return idUserMap;
     }
 
-    private HorseRaceDAO<Bet> betDAO = new BetDAOImpl();
+    @Override
+    public Integer getObjectByParameter(int ID) {
+        return null;
+    }
 
     @Override
     public Vector<Bet> findAll() {

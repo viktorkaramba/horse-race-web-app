@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonPropertyOrder({"id", "idRace", "idHorse", "value"})
 public class Coefficient {
-    int id;
-    int idRace;
-    int idHorse;
-    float value;
+    private int id;
+    private int idRace;
+    private int idHorse;
+    private float value;
 }

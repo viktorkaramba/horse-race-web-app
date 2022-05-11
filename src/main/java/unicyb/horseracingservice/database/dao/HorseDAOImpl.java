@@ -25,6 +25,7 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
                 Horse horse = new Horse(id, number, name, breed);
                 horseVector.add(horse);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
@@ -47,6 +48,7 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
                 String breed = resultSet.getString(4);
                 horse = new Horse(id, number, name, breed);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
@@ -66,6 +68,7 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
             statement.setString(4, object.getBreed());
             statement.executeUpdate();
             result = "Horse successfully added!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! horse don't add";
@@ -82,11 +85,17 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
             statement.setInt(1, ID);
             statement.executeUpdate();
             result = "Horse successfully deleted!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! horse don't delete";
         }
         return result;
+    }
+
+    @Override
+    public Horse getObjectByParameter(String parameter) {
+        return null;
     }
 
     @Override
@@ -121,6 +130,7 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
                     Horse horse = new Horse(id, number, name, breed);
                     horseVector.add(horse);
                 }
+                con.close();
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

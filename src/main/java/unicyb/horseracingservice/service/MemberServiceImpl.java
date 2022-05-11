@@ -12,6 +12,11 @@ public class MemberServiceImpl implements HorseRaceService<Member>{
     private HorseRaceDAO<Member> memberDAO = new MemberDAOImpl();
 
     @Override
+    public Integer getObjectByParameter(int ID) {
+        return null;
+    }
+
+    @Override
     public Map<Integer, Member> getObjectsByTwoParameters(int ID_1, int ID_2) {
         return null;
     }

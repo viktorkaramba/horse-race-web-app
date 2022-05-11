@@ -25,6 +25,7 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
                 Bet bet = getBet(resultSet);
                 betVector.add(bet);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
@@ -43,6 +44,7 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
             while (resultSet.next()){
                 bet = getBet(resultSet);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
@@ -67,14 +69,14 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_BETS);
-            statement.setInt(1, object.getId());
-            statement.setInt(2, object.getIdUser());
-            statement.setInt(3, object.getIdRace());
-            statement.setInt(4, object.getIdHorse());
-            statement.setFloat(5, object.getPrice());
-            statement.setInt(6, object.getTop());
+            statement.setInt(1, object.getIdUser());
+            statement.setInt(2, object.getIdRace());
+            statement.setInt(3, object.getIdHorse());
+            statement.setFloat(4, object.getPrice());
+            statement.setInt(5, object.getTop());
             statement.executeUpdate();
             result = "Bet successfully added!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! bet don't add";
@@ -91,6 +93,7 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
             statement.setInt(1, ID);
             statement.executeUpdate();
             result = "Bet successfully deleted!!!";
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             result = "Error!!! bet don't delete";
@@ -116,6 +119,7 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
                 Bet bet = getBet(resultSet);
                 idUserMap.put(bet.getIdUser(), bet);
             }
+            con.close();
         }
         catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
@@ -130,6 +134,11 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
 
     @Override
     public Vector<Integer> getObjectsByParameter(int ID) {
+        return null;
+    }
+
+    @Override
+    public Bet getObjectByParameter(String parameter) {
         return null;
     }
 }
