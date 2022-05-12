@@ -4,6 +4,7 @@ package unicyb.horseracingservice.database.dao;
 import java.util.Map;
 import java.util.Vector;
 
+//Interface for dao
 public interface HorseRaceDAO<T> {
     public Vector<T> findAll();
     public T getObject(int ID);

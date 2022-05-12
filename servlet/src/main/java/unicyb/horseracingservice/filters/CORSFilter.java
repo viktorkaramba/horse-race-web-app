@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//CORS filter
 @WebFilter(urlPatterns = "/*")
 public class CORSFilter implements Filter {
 

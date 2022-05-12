@@ -47,10 +47,13 @@ export class BookmakerComponent implements OnInit{
     this.raceService.fetchRaces().subscribe(
       data =>{
         for (let race of data) {
+          //Check if race is over
           if (!race.isOver) {
             let isAdd: boolean = true;
             for(let horse of race.horses) {
               this.coefficientService.postCoefficient(race.id, horse.id).subscribe(
+                //if there are not coefficient on some horse in this race add it to races array
+                //else delete horse
                 coefficients => {
                     if (coefficients == null) {
                       if (isAdd) {
@@ -71,11 +74,13 @@ export class BookmakerComponent implements OnInit{
     );
   }
 
+  //Method for add coefficient
   addCoefficient(body: any){
     this.coefficientService.postCoefficients(body);
     location.reload();
   }
 
+  //Method for logout
   logout(): void{
     this.keycloakService.logout('http://localhost:4200');
   }

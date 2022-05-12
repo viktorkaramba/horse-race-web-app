@@ -19,6 +19,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Servlet used for work with users
 @WebServlet("/users/*")
 public class RestApiUserServlet extends HttpServlet {
 
@@ -65,6 +66,7 @@ public class RestApiUserServlet extends HttpServlet {
         return user;
     }
 
+    //Method used to update balance of user after he made a bet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");

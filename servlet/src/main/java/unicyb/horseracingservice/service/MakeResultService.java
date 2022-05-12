@@ -9,12 +9,14 @@ import unicyb.horseracingservice.entity.User;
 import java.util.Map;
 import java.util.Vector;
 
+//Service for make result
 public class MakeResultService {
 
     private HorseRaceDAO<User> userHorseRaceDAO = new UserDaoImpl();
     private HorseRaceService<Bet> betService = new BetServiceImpl();
     private HorseRaceService<Race> raceService = new RaceServiceImpl();
 
+    //Method for get all user that win
     public Vector<User> getWinners(int idRace, int idHorse){
         Map<Integer, Bet> idUserMap = betService.getObjectsByTwoParameters(idRace, idHorse);
         Vector<User> userVector = new Vector<>();
@@ -25,6 +27,7 @@ public class MakeResultService {
         return userVector;
     }
 
+    //Method for update user balance
     public void updateWinnersBalance(int idRace, int idHorse){
         Map<Integer, Bet> idUserMap = betService.getObjectsByTwoParameters(idRace, idHorse);
         Vector<User> userVector = getWinners(idRace, idHorse);

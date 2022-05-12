@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceDAO interface for horses
 public class HorseDAOImpl implements HorseRaceDAO<Horse> {
 
     @Override

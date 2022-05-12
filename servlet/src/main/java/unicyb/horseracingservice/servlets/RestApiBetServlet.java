@@ -18,6 +18,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Servlet used for work with bets
 @WebServlet("/bets/*")
 public class RestApiBetServlet extends HttpServlet {
     private HorseRaceService<Bet> betService;
@@ -70,7 +71,6 @@ public class RestApiBetServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();
         if(authorizationService.hasAuthority(req, "user")) {
-            System.out.println("In bet");
             if (Pattern.matches(".*/bets/$", req.getRequestURL())) {
                 InputStreamReader reader = new InputStreamReader(req.getInputStream());
                 Bet bet = gson.fromJson(reader, Bet.class);

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
+//Servlet used to make a result
 @WebServlet("/make-result/*")
 public class MakeResultServlet extends HttpServlet {
 

@@ -19,6 +19,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Servlet used for work with races
 @WebServlet("/races/*")
 public class RestApiRaceServlet extends HttpServlet {
 

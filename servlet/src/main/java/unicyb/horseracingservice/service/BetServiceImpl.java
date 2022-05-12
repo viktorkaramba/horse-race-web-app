@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceService interface for bets
 public class BetServiceImpl implements HorseRaceService<Bet>{
 
     private HorseRaceDAO<Bet> betDAO = new BetDAOImpl();

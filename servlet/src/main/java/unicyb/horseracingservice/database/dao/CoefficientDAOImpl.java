@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceDAO interface for coefficients
 public class CoefficientDAOImpl implements HorseRaceDAO<Coefficient> {
     @Override
     public Vector<Coefficient> findAll() {

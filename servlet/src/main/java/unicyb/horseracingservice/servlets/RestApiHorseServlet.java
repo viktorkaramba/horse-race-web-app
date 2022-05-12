@@ -18,6 +18,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Servlet used for work with bets
 @WebServlet("/horses/*")
 public class RestApiHorseServlet extends HttpServlet {
     private HorseRaceService<Horse> horseService;

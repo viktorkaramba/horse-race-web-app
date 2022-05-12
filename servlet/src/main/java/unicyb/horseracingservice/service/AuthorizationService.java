@@ -7,7 +7,7 @@ import org.keycloak.representations.AccessToken;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
-
+//  Authorization service for verifier token
 public class AuthorizationService {
 
     public static final String AUTHORIZATION_HEADER = "Authorization";

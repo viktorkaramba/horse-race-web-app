@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceDAO interface for bets
 public class BetDAOImpl implements HorseRaceDAO<Bet> {
 
     @Override
@@ -58,8 +59,7 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
         int idRace = resultSet.getInt(3);
         int idHorse = resultSet.getInt(4);
         float price = resultSet.getFloat(5);
-        int top = resultSet.getInt(6);
-        Bet bet = new Bet(id, idUser, idRace, idHorse, price, top);
+        Bet bet = new Bet(id, idUser, idRace, idHorse, price);
         return bet;
     }
 
@@ -73,7 +73,6 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
             statement.setInt(2, object.getIdRace());
             statement.setInt(3, object.getIdHorse());
             statement.setFloat(4, object.getPrice());
-            statement.setInt(5, object.getTop());
             statement.executeUpdate();
             result = "Bet successfully added!!!";
             con.close();

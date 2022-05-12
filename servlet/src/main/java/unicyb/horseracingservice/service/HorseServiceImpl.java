@@ -7,6 +7,7 @@ import unicyb.horseracingservice.entity.Horse;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceService interface for horses
 public class HorseServiceImpl implements HorseRaceService<Horse> {
 
     private HorseRaceDAO<Horse> horseDAO = new HorseDAOImpl();

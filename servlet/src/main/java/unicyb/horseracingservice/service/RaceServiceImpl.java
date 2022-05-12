@@ -7,6 +7,7 @@ import unicyb.horseracingservice.database.dao.RaceDAOImpl;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceService interface for races
 public class RaceServiceImpl implements HorseRaceService<Race>{
 
     private HorseRaceDAO<Race> raceDAO = new RaceDAOImpl();

@@ -10,11 +10,13 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  //Method used to get user
   fetchUser(userName: string){
     let url = this._url + userName;
     return this.http.get<any>(url);
   }
 
+  //Method used to update balance
   updateBalance(data: any): void{
     const headers = {
       'content-type': 'application/json'

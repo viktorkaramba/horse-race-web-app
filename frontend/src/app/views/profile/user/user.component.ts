@@ -1,7 +1,6 @@
 import { KeycloakService} from "keycloak-angular";
 import {Component, OnInit} from "@angular/core";
 import {RaceService} from "../race.service";
-import {HorseService} from "../horse.service";
 import {CoefficientService} from "../coefficientservice";
 import {Race} from "../race";
 import {BetService} from "../bet.service";
@@ -47,6 +46,7 @@ export class UserComponent implements OnInit{
     );
   }
 
+  //Method for get user
   fetchUser(){
     this.userService.fetchUser(this.userName).subscribe(
       response =>{
@@ -69,6 +69,8 @@ export class UserComponent implements OnInit{
               this.coefficientService.fetchCoefficient().subscribe(
                 coefficients => {
                   for (let c of coefficients) {
+                    //Check if there are coefficient on this horse in this race
+                    //If true add to coefficients array
                     if (c.idRace == race.id && c.idHorse == horse.id) {
                       array.push(c.value);
                       if (isAdd) {
@@ -87,6 +89,7 @@ export class UserComponent implements OnInit{
     );
   }
 
+  //Method for add price of user bets
   checkRace(race: any):boolean{
     for(let bet of this.bets){
       if(bet.idRace == race.id && bet.idUser == this.user[0].id){
@@ -97,12 +100,14 @@ export class UserComponent implements OnInit{
     return false;
   }
 
+  //Method for add bet
   addBet(bet: any){
     this.betService.postBet(bet);
     this.userService.updateBalance(bet);
     location.reload();
   }
 
+  //Method for logout
   logout(): void{
     this.keycloakService.logout('http://localhost:4200');
   }

@@ -9,14 +9,17 @@ export class BetService {
 
   constructor(private http: HttpClient) {}
 
+  //Method used to get all races
   fetchBets(){
     return this.http.get<any>(this._url);
   }
 
+  //Method used to post races
   postBet(data: any): void{
     const headers = {
       'content-type': 'application/json'
     };
+    //Firstly parse user data
     let id = 0;
     let bet = data.value["bet"];
     let betInfo = data.value["info"].split(', ');
@@ -25,8 +28,8 @@ export class BetService {
     let idRace = betInfo[2];
     let price = bet * coefficient;
     let idHorse = betInfo[3];
-    let top = "0";
-    let body = JSON.stringify({id: id, idUser: idUser, idRace: idRace, idHorse: idHorse, price: price, top: top});
+    //Create json for body of request
+    let body = JSON.stringify({id: id, idUser: idUser, idRace: idRace, idHorse: idHorse, price: price});
     console.log(body);
     this.http.post<any>(this._url, body, {'headers':headers}).subscribe();
   }

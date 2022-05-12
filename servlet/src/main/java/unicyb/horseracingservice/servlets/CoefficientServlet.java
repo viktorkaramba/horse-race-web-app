@@ -22,6 +22,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Servlet for work with coefficients
 @WebServlet("/coefficients/*")
 public class CoefficientServlet extends HttpServlet {
 
@@ -53,6 +54,7 @@ public class CoefficientServlet extends HttpServlet {
         out.close();
     }
 
+    //Method for get object by id
     private Coefficient getRaceFromUrl(StringBuffer requestUrl){
         Pattern pattern = Pattern.compile("coefficients/(\\d+)");
         Matcher matcher = pattern.matcher(requestUrl);
@@ -68,6 +70,7 @@ public class CoefficientServlet extends HttpServlet {
         return coefficient;
     }
 
+    //Method for get coefficient by race id and horse id
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, JsonIOException {
         resp.setContentType("application/json");
@@ -88,6 +91,7 @@ public class CoefficientServlet extends HttpServlet {
         out.print(json);
     }
 
+    //Method for add coefficient
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException, JsonIOException {

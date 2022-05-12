@@ -6,7 +6,6 @@ import {UserService} from "./views/profile/user.service";
 import {BetService} from "./views/profile/bet.service";
 import {CoefficientService} from "./views/profile/coefficientservice";
 import {MakeResultService} from "./views/profile/makeresult.service";
-import {HorseService} from "./views/profile/horse.service";
 import {RaceService} from "./views/profile/race.service";
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {initializeKeycloak} from "./utility/app.init";
@@ -34,7 +33,6 @@ import {DropDownListModule} from "@syncfusion/ej2-angular-dropdowns";
     deps: [KeycloakService]
   },
     RaceService,
-    HorseService,
     MakeResultService,
     CoefficientService,
     BetService,

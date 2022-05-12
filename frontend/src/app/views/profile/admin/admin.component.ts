@@ -2,14 +2,11 @@ import { KeycloakService} from "keycloak-angular";
 import {Component, OnInit} from "@angular/core";
 import {RaceService} from "../race.service";
 import {NgForm} from "@angular/forms";
-import {HorseService} from "../horse.service";
 import {MakeResultService} from "../makeresult.service";
 import {BetService} from "../bet.service";
 import {UserService} from "../user.service";
 import {CoefficientService} from "../coefficientservice";
 import {Race} from "../race";
-import {Coefficient} from "../coefficient";
-
 
 @Component({
   selector: 'app-admin',
@@ -41,6 +38,7 @@ export class AdminComponent implements OnInit{
     this.raceService.fetchRaces().subscribe(
       data =>{
         for (let race of data) {
+          //Check if race is over
           if (!race.isOver) {
             let array: any[] = [];
             let isAdd: boolean = true;
@@ -48,6 +46,8 @@ export class AdminComponent implements OnInit{
               this.coefficientService.fetchCoefficient().subscribe(
                 coefficients => {
                   for (let c of coefficients) {
+                    //Check if there are coefficient on this horse in this race
+                    //If true add to coefficients array
                     if (c.idRace == race.id && c.idHorse == horse.id) {
                       array.push(c.value);
                       if (isAdd) {
@@ -66,11 +66,12 @@ export class AdminComponent implements OnInit{
     );
   }
 
-
+//Method for logout
   logout(): void{
     this.keycloakService.logout('http://localhost:4200');
   }
 
+//Method for add result
   addResult(horseForm: NgForm): void{
     this.makeResultService.postHorse(horseForm);
     location.reload();

@@ -1,5 +1,6 @@
 package unicyb.horseracingservice.database;
 
+//SQL Query
 public class SQLQuery {
     public static final String SQL_SELECT_ALL_RACES="SELECT *FROM RACES";
     public static final String SQL_SELECT_RACES_BY_ID="SELECT * FROM RACES WHERE ID = ?";
@@ -17,7 +18,7 @@ public class SQLQuery {
     public static final String SQL_DELETE_HORSE="DELETE FROM HORSES WHERE ID = ?";
     public static final String SQL_SELECT_ALL_BETS="SELECT *FROM BETS";
     public static final String SQL_SELECT_BETS_BY_ID="SELECT * FROM BETS WHERE ID = ?";
-    public static final String SQL_INSERT_BETS="INSERT INTO BETS (ID_US, ID_RA, ID_HO, PRICE, TOP) VALUES(?, ?, ?, ?, ?)";
+    public static final String SQL_INSERT_BETS="INSERT INTO BETS (ID_US, ID_RA, ID_HO, PRICE) VALUES(?, ?, ?, ?)";
     public static final String SQL_DELETE_BETS="DELETE FROM BETS WHERE ID = ?";
     public static final String SQL_SELECT_WIN_BETS_BY_RACE_HORSE="SELECT * FROM BETS WHERE ID_RA = ? AND ID_HO = ?";
     public static final String SQL_SELECT_ALL_USERS="SELECT *FROM USERS";

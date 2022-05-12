@@ -4,11 +4,11 @@ import {KeycloakService} from "keycloak-angular";
 
 @Injectable()
 export class MakeResultService {
-  private postId: any;
 
   constructor(private keycloakService: KeycloakService, private http: HttpClient) {}
   _url : string = 'http://localhost:8088/make-result/';
 
+  //Used to make a result for bet
   postHorse(data: any): void {
     const headers = {
       'content-type': 'application/json'

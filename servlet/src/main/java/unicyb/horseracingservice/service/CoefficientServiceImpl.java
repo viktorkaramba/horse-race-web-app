@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceService interface for coefficients
 public class CoefficientServiceImpl implements HorseRaceService<Coefficient> {
 
     private HorseRaceDAO<Coefficient> coefficientDAO = new CoefficientDAOImpl();

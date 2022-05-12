@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.Map;
 import java.util.Vector;
 
+//Implementation HorseRaceDAO interface for races
 public class RaceDAOImpl implements HorseRaceDAO<Race>{
 
     private HorseRaceDAO<Member> memberDAO = new MemberDAOImpl();
@@ -39,6 +40,7 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
                 Timestamp date = resultSet.getTimestamp(4);
                 Float prize = resultSet.getFloat(5);
                 Boolean isOver = resultSet.getBoolean(6);
+                //Get all horses in this race
                 Vector<Integer> idHorsesVector = memberDAO.getObjectsByParameter(id);
                 Vector<Horse> horseVector = horseDAO.getObjectsByParameter(idHorsesVector);
                 Race race = new Race(id, name, place, date, prize, horseVector, isOver);

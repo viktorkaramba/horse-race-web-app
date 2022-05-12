@@ -9,18 +9,22 @@ export class CoefficientService {
   constructor(private http: HttpClient) {}
   _url : string = 'http://localhost:8088/coefficients/';
 
+  //Method used to get coefficients
   fetchCoefficient(): Observable<Coefficient[]>{
     return this.http.get<Coefficient[]>(this._url);
   }
 
+  //Method used to get coefficient by race id and horse id
   postCoefficient(idRace: any, idHorse : any){
     const headers = {
       'content-type': 'application/json'
     };
+    //Create json for body of request
     let body = JSON.stringify({idFirst: idRace, idSecond: idHorse})
     return this.http.put<any>(this._url, body, {'headers':headers});
   }
 
+  //Method used to post coefficient
   postCoefficients(body: any){
     const headers = {
       'content-type': 'application/json'

@@ -3,6 +3,7 @@ package unicyb.horseracingservice.service;
 import java.util.Map;
 import java.util.Vector;
 
+// Interface for services
 public interface HorseRaceService<T> {
     public Vector<T> findAll();
     public T getObject(int ID);

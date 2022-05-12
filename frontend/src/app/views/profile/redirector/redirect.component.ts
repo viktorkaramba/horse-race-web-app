@@ -7,6 +7,8 @@ import {KeycloakService} from "keycloak-angular";
   templateUrl: 'redirect.component.html',
   styleUrls: ['./redirect.component.scss']
 })
+
+//Used for redirect to page by role of user
 export class RedirectComponent implements OnInit {
 
   constructor(private router: Router, private keycloakService: KeycloakService) { }
