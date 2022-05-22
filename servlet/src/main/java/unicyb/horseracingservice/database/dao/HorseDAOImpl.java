@@ -63,7 +63,7 @@ public class HorseDAOImpl implements HorseRaceDAO<Horse> {
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_HORSE);
-            statement.setInt(1, object.getId());
+            statement.setInt(1, object.getID());
             statement.setInt(2, object.getNumber());
             statement.setString(3, object.getName());
             statement.setString(4, object.getBreed());

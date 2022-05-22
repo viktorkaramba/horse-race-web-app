@@ -93,7 +93,7 @@ public class RestApiHorseServlet extends HttpServlet {
         Gson gson = new Gson();
         Horse horse = getRaceFromUrl(req.getRequestURL());
         if(horse != null){
-            horseService.deleteObject(horse.getId());
+            horseService.deleteObject(horse.getID());
         }
         String json = gson.toJson(horse, Horse.class);
         out.print(json);

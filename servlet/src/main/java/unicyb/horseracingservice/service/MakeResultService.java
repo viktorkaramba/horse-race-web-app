@@ -33,10 +33,10 @@ public class MakeResultService {
         Vector<User> userVector = getWinners(idRace, idHorse);
         for (User user: userVector){
             System.out.println(user.getUsername());
-            float win = user.getBalance() + idUserMap.get(user.getId()).getPrice();
+            float win = user.getBalance() + idUserMap.get(user.getID()).getPrice();
             System.out.println(win);
             String new_balance = Float.toString(win);
-            userHorseRaceDAO.updateObject(user.getId(), new String[]{new_balance});
+            userHorseRaceDAO.updateObject(user.getID(), new String[]{new_balance});
         }
         String new_is_over = "TRUE";
         raceService.updateObject(idRace, new String[]{new_is_over});

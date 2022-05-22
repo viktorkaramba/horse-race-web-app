@@ -27,4 +27,10 @@ public class RaceService {
         }
         return race;
     }
+
+    public void updateISOVER(int ID, boolean isOver){
+        Races race = raceRepo.findById(ID).get();
+        race.setISOVER(isOver);
+        raceRepo.save(race);
+    }
 }

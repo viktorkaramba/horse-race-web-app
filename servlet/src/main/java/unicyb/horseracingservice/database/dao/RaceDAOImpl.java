@@ -85,12 +85,12 @@ public class RaceDAOImpl implements HorseRaceDAO<Race>{
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_RACE);
-            statement.setInt(1, object.getId());
+            statement.setInt(1, object.getID());
             statement.setString(2, object.getName());
             statement.setString(3, object.getPlace());
             statement.setTimestamp(4, object.getDate());
             statement.setFloat(5, object.getPrize());
-            statement.setBoolean(6, object.getIsOver());
+            statement.setBoolean(6, object.getISOVER());
             statement.executeUpdate();
             result = "Race successfully added!!!";
             con.close();

@@ -12,7 +12,7 @@
         <p>
           <span *ngFor="let horse of race.horses ; let j = index" class="info">
             <label class="radio-inline">
-            <input type="radio" value="{{race.id}}, {{horse.id}}" name="result" ngModel>
+            <input type="radio" value="{{race.ID}}, {{horse.ID}}" name="result" ngModel>
             {{horse.name}}
              <span class="coefficient">{{coefficients[i][j]}}x</span>
             </label>

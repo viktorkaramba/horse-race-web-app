@@ -18,13 +18,11 @@ import java.io.InputStreamReader;
 public class MakeResultServlet extends HttpServlet {
 
     private AuthorizationService authorizationService;
-    private HorseRaceService<Horse> horseService;
     private MakeResultService makeResultService;
 
     @Override
     public void init() throws ServletException{
         super.init();
-        horseService = new HorseServiceImpl();
         makeResultService = new MakeResultService();
         authorizationService = new AuthorizationService();
     }

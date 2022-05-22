@@ -69,9 +69,9 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_BETS);
-            statement.setInt(1, object.getIdUser());
-            statement.setInt(2, object.getIdRace());
-            statement.setInt(3, object.getIdHorse());
+            statement.setInt(1, object.getIDUS());
+            statement.setInt(2, object.getIDRA());
+            statement.setInt(3, object.getIDHO());
             statement.setFloat(4, object.getPrice());
             statement.executeUpdate();
             result = "Bet successfully added!!!";
@@ -130,7 +130,7 @@ public class BetDAOImpl implements HorseRaceDAO<Bet> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Bet bet = getBet(resultSet);
-                idUserMap.put(bet.getIdUser(), bet);
+                idUserMap.put(bet.getIDUS(), bet);
             }
             con.close();
         }

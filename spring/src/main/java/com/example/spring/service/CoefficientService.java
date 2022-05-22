@@ -6,6 +6,8 @@ import com.example.spring.repository.CoefficientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CoefficientService {
 
@@ -26,5 +28,9 @@ public class CoefficientService {
             throw new CoefficientNotFoundException("Coefficient not found");
         }
         return coefficient;
+    }
+
+    public Coefficients getByIDRAAndIDHO(int IDRA, int IDHO){
+        return coefficientRepo.findByIDRAAndIDHO(IDRA, IDHO);
     }
 }

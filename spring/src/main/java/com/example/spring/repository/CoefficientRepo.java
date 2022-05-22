@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface CoefficientRepo extends CrudRepository<Coefficients, Integer> {
-    List<Coefficients> findByIDRAAndIDHO(int ID_RA, int ID_HO);
+    Coefficients findByIDRAAndIDHO(int ID_RA, int ID_HO);
 }

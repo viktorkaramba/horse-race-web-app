@@ -48,8 +48,8 @@ public class CoefficientDAOImpl implements HorseRaceDAO<Coefficient> {
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_COEFFICIENT);
-            statement.setInt(1, object.getIdRace());
-            statement.setInt(2, object.getIdHorse());
+            statement.setInt(1, object.getIDRA());
+            statement.setInt(2, object.getIDHO());
             statement.setFloat(3, object.getValue());
             statement.executeUpdate();
             result = "Coefficient successfully added!!!";
@@ -97,7 +97,7 @@ public class CoefficientDAOImpl implements HorseRaceDAO<Coefficient> {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Coefficient coefficient = getCoefficient(resultSet);
-                idCoefficientMap.put(coefficient.getId(), coefficient);
+                idCoefficientMap.put(coefficient.getID(), coefficient);
             }
             con.close();
         }

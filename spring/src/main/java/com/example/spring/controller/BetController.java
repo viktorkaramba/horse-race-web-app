@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/bets")
 public class BetController {
 
@@ -25,20 +26,7 @@ public class BetController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity getBet(@RequestParam int id){
-        try {
-            return ResponseEntity.ok(betService.getBet(id));
-        }
-        catch (BetNotFoundException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
-        }
-    }
-
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity getHorses(){
         try {
             return ResponseEntity.ok(betService.getBets());
@@ -52,6 +40,15 @@ public class BetController {
     public ResponseEntity getWinners(@RequestParam int IDRA, @RequestParam int IDHO){
         try {
             return ResponseEntity.ok(betService.getWinners(IDRA, IDHO));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping("/b3")
+    public ResponseEntity getWinnersUser(@RequestParam int IDUS, @RequestParam int IDRA){
+        try {
+            return ResponseEntity.ok(betService.getByUser(IDUS,IDRA));
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Error");
         }

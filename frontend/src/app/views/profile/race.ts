@@ -1,29 +1,20 @@
-export interface IRace{
-  id: number,
-  name: string,
-  place: string,
-  date: string,
-  prize: number,
-  horses: any []
-}
+export class Race {
 
-export class Race implements IRace {
-
-  public id: number;
+  public ID: number;
   public name: string;
   public place: string;
   public date: string;
   public prize: number;
   public horses: any [];
-  public isOver: boolean;
+  public ISOVER: boolean;
 
-  constructor(id: number, name: string, place: string, date: string, prize: number, horses: any[], isOver: boolean) {
-    this.id = id;
+  constructor(ID: number, name: string, place: string, date: string, prize: number, horses: any[], ISOVER: boolean) {
+    this.ID = ID;
     this.name = name;
     this.place = place;
     this.date = date;
     this.prize = prize;
     this.horses = horses;
-    this.isOver = isOver;
+    this.ISOVER = ISOVER;
   }
 }

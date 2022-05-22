@@ -6,7 +6,7 @@
   </div>
   <div class="main_block">
 <div *ngFor="let race of races; let i = index" class="block">
-  <div *ngIf="isValid[i]==race.id; else noBet">
+  <div *ngIf="isValid[i]==race.ID; else noBet">
     <p class="header">{{race.name}}</p>
     <p class="info">Place: {{race.place}} | Date: {{race.date}} | Prize: {{race.prize}}</p>
     <form #betForm="ngForm" (ngSubmit)="addBet(betForm)">
@@ -31,7 +31,7 @@
         <p>
       <span *ngFor="let horse of race.horses; let j = index" class="info">
         <label class="radio-inline">
-        <input type="radio" value="{{coefficients[i][j]}}, {{user[0].id}}, {{race.id}}, {{horse.id}}" name="info" ngModel>
+        <input type="radio" value="{{coefficients[i][j]}}, {{user[0].ID}}, {{race.ID}}, {{horse.ID}}" name="info" ngModel>
           {{horse.name}}
           <span class="coefficient">{{coefficients[i][j]}}x</span>
         </label>

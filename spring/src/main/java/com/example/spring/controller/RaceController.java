@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/races")
 public class RaceController {
 
@@ -26,19 +27,6 @@ public class RaceController {
     }
 
     @GetMapping
-    public ResponseEntity getRace(@RequestParam int id){
-        try {
-            return ResponseEntity.ok(raceService.getRace(id));
-        }
-        catch (RaceNotFoundException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
-        }
-    }
-
-    @GetMapping("/all")
     public ResponseEntity getRaces(){
         try {
             return ResponseEntity.ok(raceService.getRaces());

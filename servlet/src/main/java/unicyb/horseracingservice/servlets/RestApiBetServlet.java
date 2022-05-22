@@ -94,7 +94,7 @@ public class RestApiBetServlet extends HttpServlet {
         Gson gson = new Gson();
         Bet bet = getRaceFromUrl(req.getRequestURL());
         if(bet != null){
-            betService.deleteObject(bet.getId());
+            betService.deleteObject(bet.getID());
         }
         String json = gson.toJson(bet, Bet.class);
         out.print(json);

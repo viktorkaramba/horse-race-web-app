@@ -1,15 +1,15 @@
 export class Coefficient {
 
-  public id: number;
-  public idRace: number;
-  public idHorse: number;
+  public ID: number;
+  public IDRA: number;
+  public IDHO: number;
   public value: number;
 
 
-  constructor(id: number, idRace: number, idHorse: number, value: number) {
-    this.id = id;
-    this.idRace = idRace;
-    this.idHorse = idHorse;
+  constructor(ID: number, IDRA: number, IDHO: number, value: number) {
+    this.ID = ID;
+    this.IDRA = IDRA;
+    this.IDHO = IDHO;
     this.value = value;
   }
 }

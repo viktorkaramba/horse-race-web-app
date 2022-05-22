@@ -29,7 +29,7 @@ export class BetService {
     let price = bet * coefficient;
     let idHorse = betInfo[3];
     //Create json for body of request
-    let body = JSON.stringify({id: id, idUser: idUser, idRace: idRace, idHorse: idHorse, price: price});
+    let body = JSON.stringify({ID: id, IDUS: idUser, IDRA: idRace, IDHO: idHorse, price: price});
     console.log(body);
     this.http.post<any>(this._url, body, {'headers':headers}).subscribe();
   }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonPropertyOrder({"id", "username", "balance"})
 public class User {
-    private int id;
+    private int ID;
     private String username;
     private Float balance;
 }

@@ -37,9 +37,12 @@ export class AdminComponent implements OnInit{
   fetchRaces(){
     this.raceService.fetchRaces().subscribe(
       data =>{
+        console.log(data);
         for (let race of data) {
           //Check if race is over
-          if (!race.isOver) {
+          let b = race.ISOVER;
+          console.log(b);
+          if (!race.ISOVER) {
             let array: any[] = [];
             let isAdd: boolean = true;
             for (let horse of race.horses) {
@@ -48,7 +51,7 @@ export class AdminComponent implements OnInit{
                   for (let c of coefficients) {
                     //Check if there are coefficient on this horse in this race
                     //If true add to coefficients array
-                    if (c.idRace == race.id && c.idHorse == horse.id) {
+                    if (c.IDRA == race.ID && c.IDHO == horse.ID) {
                       array.push(c.value);
                       if (isAdd) {
                         this.races.push(race);

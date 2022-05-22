@@ -99,7 +99,7 @@ public class RestApiRaceServlet extends HttpServlet {
         Gson gson = new Gson();
         Race race = getRaceFromUrl(req.getRequestURL());
         if(race != null){
-            raceService.deleteObject(race.getId());
+            raceService.deleteObject(race.getID());
         }
         String json = gson.toJson(race, Race.class);
         out.print(json);

@@ -1,11 +1,11 @@
 export class User {
 
-  public id: number;
+  public ID: number;
   public username: string;
   public balance: number
 
-  constructor(id: number, username: string, balance: number) {
-    this.id = id;
+  constructor(ID: number, username: string, balance: number) {
+    this.ID = ID;
     this.username = username;
     this.balance = balance;
   }

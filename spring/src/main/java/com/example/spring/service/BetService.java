@@ -30,8 +30,11 @@ public class BetService {
         return bet;
     }
 
-    public List<Bets> getWinners(int IDRA, int IDHO){
+    public Iterable<Bets> getWinners(int IDRA, int IDHO){
         return betRepo.findByIDRAAndIDHO(IDRA, IDHO);
     }
 
+    public Bets getByUser(int IDUS, int IDRA){
+        return betRepo.findByIDUSAndIDRA(IDUS, IDRA);
+    }
 }

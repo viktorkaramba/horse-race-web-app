@@ -50,6 +50,7 @@ export class UserComponent implements OnInit{
   fetchUser(){
     this.userService.fetchUser(this.userName).subscribe(
       response =>{
+        console.log(response);
         this.user = response;
       }
     );
@@ -58,10 +59,12 @@ export class UserComponent implements OnInit{
   fetchRaces(){
     this.raceService.fetchRaces().subscribe(
       data =>{
+        console.log(data);
         for (let race of data) {
-          if (!race.isOver) {
+          console.log(race.ISOVER);
+          if (!race.ISOVER) {
             if (this.checkRace(race)) {
-              this.isValid.push(race.id);
+              this.isValid.push(race.ID);
             }
             let array: any[] = [];
             let isAdd: boolean = true;
@@ -71,7 +74,7 @@ export class UserComponent implements OnInit{
                   for (let c of coefficients) {
                     //Check if there are coefficient on this horse in this race
                     //If true add to coefficients array
-                    if (c.idRace == race.id && c.idHorse == horse.id) {
+                    if (c.IDRA == race.ID && c.IDHO == horse.ID) {
                       array.push(c.value);
                       if (isAdd) {
                         this.races.push(race);
@@ -92,7 +95,7 @@ export class UserComponent implements OnInit{
   //Method for add price of user bets
   checkRace(race: any):boolean{
     for(let bet of this.bets){
-      if(bet.idRace == race.id && bet.idUser == this.user[0].id){
+      if(bet.IDRA == race.ID && bet.IDUS == this.user[0].ID){
         this.prices.push(bet);
         return true;
       }

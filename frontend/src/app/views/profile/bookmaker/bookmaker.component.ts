@@ -48,10 +48,10 @@ export class BookmakerComponent implements OnInit{
       data =>{
         for (let race of data) {
           //Check if race is over
-          if (!race.isOver) {
+          if (!race.ISOVER) {
             let isAdd: boolean = true;
             for(let horse of race.horses) {
-              this.coefficientService.postCoefficient(race.id, horse.id).subscribe(
+              this.coefficientService.postCoefficient(race.ID, horse.ID).subscribe(
                 //if there are not coefficient on some horse in this race add it to races array
                 //else delete horse
                 coefficients => {

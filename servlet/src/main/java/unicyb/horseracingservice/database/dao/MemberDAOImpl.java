@@ -60,9 +60,9 @@ public class MemberDAOImpl implements HorseRaceDAO<Member>{
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_MEMBER);
-            statement.setInt(1, object.getId());
-            statement.setInt(2, object.getIdRace());
-            statement.setInt(3, object.getIdHorse());
+            statement.setInt(1, object.getID());
+            statement.setInt(2, object.getIDRA());
+            statement.setInt(3, object.getIDHO());
             statement.executeUpdate();
             result = "Member successfully added!!!";
             con.close();

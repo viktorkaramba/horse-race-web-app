@@ -11,13 +11,13 @@ import java.util.Vector;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonPropertyOrder({"id", "name", "place", "date", "prize", "horses", "isOver"})
+@JsonPropertyOrder({"ID", "name", "place", "date", "prize", "horses", "ISOVER"})
 public class Race {
-    private int id;
+    private int ID;
     private String name;
     private String place;
     private Timestamp date;
     private float prize;
     private Vector<Horse> horses;
-    private Boolean isOver;
+    private Boolean ISOVER;
 }

@@ -60,7 +60,7 @@ public class UserDaoImpl implements HorseRaceDAO<User>{
         try {
             Connection con = DatabaseConnection.initializeDatabase();
             PreparedStatement statement = con.prepareStatement(SQLQuery.SQL_INSERT_USER);
-            statement.setInt(1, object.getId());
+            statement.setInt(1, object.getID());
             statement.setString(2, object.getUsername());
             statement.setFloat(3, object.getBalance());
             statement.executeUpdate();

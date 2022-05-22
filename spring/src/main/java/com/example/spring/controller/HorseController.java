@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/horses")
 public class HorseController {
 
@@ -26,19 +27,6 @@ public class HorseController {
     }
 
     @GetMapping
-    public ResponseEntity getHorse(@RequestParam int id){
-        try {
-            return ResponseEntity.ok(horseService.getHorse(id));
-        }
-        catch (HorseNotFoundException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
-        }
-    }
-
-    @GetMapping("/all")
     public ResponseEntity getHorses(){
         try {
             return ResponseEntity.ok(horseService.getHorses());

@@ -31,10 +31,11 @@ export class CoefficientService {
     };
     let _id = 0;
     let _coefficient = body.value["coefficient"];
+    console.log(_coefficient);
     let _coefficientInfo = body.value["info"].split(', ');
     let _idRace = _coefficientInfo[0];
     let _idHorse = _coefficientInfo[1];
-    let data = JSON.stringify({id: _id, idRace: _idRace, idHorse: _idHorse, value: _coefficient});
+    let data = JSON.stringify({ID: _id, IDRA: _idRace, IDHO: _idHorse, value: _coefficient});
     console.log(data);
     this.http.post<any>(this._url, data, {'headers':headers}).subscribe();
   }
