@@ -26,5 +26,4 @@ public class Users {
     private Long ID;
     private String username;
     private float balance;
-
 }

@@ -27,7 +27,7 @@ public class BetController {
     }
 
     @GetMapping()
-    public ResponseEntity getHorses(){
+    public ResponseEntity getBets(){
         try {
             return ResponseEntity.ok(betService.getBets());
         }
@@ -36,21 +36,4 @@ public class BetController {
         }
     }
 
-    @GetMapping("/b2")
-    public ResponseEntity getWinners(@RequestParam int IDRA, @RequestParam int IDHO){
-        try {
-            return ResponseEntity.ok(betService.getWinners(IDRA, IDHO));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
-        }
-    }
-
-    @GetMapping("/b3")
-    public ResponseEntity getWinnersUser(@RequestParam int IDUS, @RequestParam int IDRA){
-        try {
-            return ResponseEntity.ok(betService.getByUser(IDUS,IDRA));
-        }catch (Exception e){
-            return ResponseEntity.badRequest().body("Error");
-        }
-    }
 }

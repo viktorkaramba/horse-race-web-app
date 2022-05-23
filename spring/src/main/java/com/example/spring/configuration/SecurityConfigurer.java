@@ -4,23 +4,27 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+
 @Configuration
-@EnableWebSecurity(debug = true)
-public class WebConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                .anyRequest().permitAll()
-                .and().httpBasic();
+                .antMatchers("/races").permitAll()
+                .antMatchers("/horses").permitAll()
+                .antMatchers("/coefficients").permitAll()
+                .antMatchers("/make-result").hasRole("admin")
+                .antMatchers("/bets").hasRole("user");
     }
+
 
     @Bean
     public FilterRegistrationBean corsFilter() {
